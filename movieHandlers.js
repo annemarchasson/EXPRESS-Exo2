@@ -57,10 +57,32 @@ const getMovieById = (req, res) => {
 
 
 
+const putMovie= (req, res) => {
+  const id = parseInt(req.params.id);
+  const {title, director, year, color, duration } = req.body;
+
+  database
+  .query (
+    "UPDATE movies SET title = ?, director = ?, year = ?, color = ?, duration = ? WHERE id = ?",
+    [title, director, year, color, duration, id]
+  )
+  .then(([result])=> {
+    if (result.affectedRows === 1 ) {
+      res.status(200).send("it worked");
+    } else {
+    res.sendStatus(404);
+    }
+  })
+  .catch((err)=>{
+    console.error(err);
+    res.status(500).send("dont update movie");
+  });
+};
 
   module.exports = {
     getMovies,
     getMovieById,
     postMovie,
+    putMovie,
   };
   

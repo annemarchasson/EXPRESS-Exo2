@@ -39,7 +39,7 @@ const getMovieById = (req, res) => {
     .query (
         "INSERT INTO movies(title, director, year, color, duration) VALUES (?, ?, ?, ?, ?)",
 
-        // ? près du mot-clé SQL VALUES. Ces points d'interrogation seront remplacés par le module mysql2 avant que la requête ne soit réellemhttps://odyssey.wildcodeschool.com/agendaent envoyée à la base de données.
+        // ? près du mot-clé SQL VALUES. Ces points d'interrogation seront remplacés par le module mysql2 avant que la requête ne soit réellem nvoyée à la base de données.
 
         [title, director, year, color, duration]
       )

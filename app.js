@@ -19,7 +19,7 @@ const userHandlers = require("./userHandlers");
 
 app.get("/api/users", userHandlers.getUsers);
 app.get("/api/users/:id", userHandlers.getUserById);
-app.post("api/users", userHandlers.postUser);
+app.post("/api/users", userHandlers.postUser);
 //route user post
 
 const movieHandlers = require("./movieHandlers");

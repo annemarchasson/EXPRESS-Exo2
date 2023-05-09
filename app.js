@@ -3,6 +3,9 @@ require("dotenv").config();
 
 const app = express();
 
+// Express ne peut pas lire les corps de requête JSON par défaut... Pour que cela fonctionne, nous devons utiliser un middleware express intégré : express.json().
+app.use(express.json());
+
 const port = process.env.APP_PORT ?? 5000;
 
 const welcome = (req, res) => {
@@ -16,6 +19,15 @@ const userHandlers = require("./userHandlers");
 
 app.get("/api/users", userHandlers.getUsers);
 app.get("/api/users/:id", userHandlers.getUserById);
+app.get("api/users", userHandlers.postUser);
+
+
+const movieHandlers = require("./movieHandlers");
+
+app.get("/api/movies", movieHandlers.getMovies);
+app.get("/api/movies/:id", movieHandlers.getMovieById);
+app.post("/api/movies", movieHandlers.postMovie);
+
 
 app.listen(port, (err) => {
   if (err) {

@@ -19,8 +19,12 @@ const userHandlers = require("./userHandlers");
 
 app.get("/api/users", userHandlers.getUsers);
 app.get("/api/users/:id", userHandlers.getUserById);
-app.post("/api/users", userHandlers.postUser);
-app.put("/api/users/:id", userHandlers.putUser);
+
+const {validationUser} = require('./validationUser.js');
+app.post("/api/users", validationUser, userHandlers.postUser);
+
+
+app.put("/api/users/:id", validationUser, userHandlers.putUser);
 app.delete("/api/users/:id", userHandlers.deleteUser);
 
 
@@ -28,8 +32,10 @@ const movieHandlers = require("./movieHandlers");
 
 app.get("/api/movies", movieHandlers.getMovies);
 app.get("/api/movies/:id", movieHandlers.getMovieById);
-app.post("/api/movies", movieHandlers.postMovie);
-app.put("/api/movies/:id", movieHandlers.putMovie);
+
+const {validationMovie} = require('./validationMovie.js');
+app.post("/api/movies", validationMovie, movieHandlers.postMovie);
+app.put("/api/movies/:id",  validationMovie, movieHandlers.putMovie);
 app.delete("/api/movies/:id", movieHandlers.deleteMovie);
 
 

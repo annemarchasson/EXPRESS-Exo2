@@ -6,6 +6,7 @@ const validationUser = [
     body("email").isEmail(),
     body("city").isLength({max:100}),
     body("language").isLength({max:100}),
+    body(" hashedPassword").isLength({max:600}),
     (req, res, next) => {
         const errors = validationResult(req);
     

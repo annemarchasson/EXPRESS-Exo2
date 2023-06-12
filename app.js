@@ -3,6 +3,7 @@ require("dotenv").config();
 
 const app = express();
 
+const { hashPassword } = require("./auth.js");
 // Express ne peut pas lire les corps de requête JSON par défaut... Pour que cela fonctionne, nous devons utiliser un middleware express intégré : express.json().
 app.use(express.json());
 
@@ -17,14 +18,16 @@ app.get("/", welcome);
 
 const userHandlers = require("./userHandlers");
 
-app.get("/api/users", userHandlers.getUsers);
-app.get("/api/users/:id", userHandlers.getUserById);
+
+app.get("/api/users", hashPassword, userHandlers.getUsers);
+app.get("/api/users/:id", hashPassword, userHandlers.getUserById);
 
 const {validationUser} = require('./validationUser.js');
-app.post("/api/users", validationUser, userHandlers.postUser);
+app.get("/api/users", hashPassword, userHandlers.getUsers);
+app.post("/api/users", validationUser, hashPassword, userHandlers.postUser);
 
 
-app.put("/api/users/:id", validationUser, userHandlers.putUser);
+app.put("/api/users/:id", validationUser, hashPassword, userHandlers.putUser);
 app.delete("/api/users/:id", userHandlers.deleteUser);
 
 

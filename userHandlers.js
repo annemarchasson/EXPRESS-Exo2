@@ -71,13 +71,13 @@ const getUserById = (req, res) => {
 
 
 const postUser =(req, res)=>{
-  const {firstname, lastname, email, city, language } =
+  const {firstname, lastname, email, city, language,  hashedPassword } =
   req.body;
 
   database
   .query (
-    "INSERT INTO users(firstname, lastname, email, city, language) VALUES (?, ?, ?, ?, ?)",
-    [firstname, lastname, email, city, language]
+    "INSERT INTO users(firstname, lastname, email, city, language, hashedPassword) VALUES (?, ?, ?, ?, ?, ?)",
+    [firstname, lastname, email, city, language,  hashedPassword]
   )
   .then(([result])=>{
     res.location('api/users/${result.insertId}').sendStatus(201);
@@ -91,13 +91,13 @@ const postUser =(req, res)=>{
 
 const putUser = (req, res) =>{
   const id = parseInt(req.params.id);
-  const {firstname, lastname, email, city, language} =
+  const {firstname, lastname, email, city, language,  hashedPassword} =
   req.body;
 
   database
   .query (
-    "UPDATE users SET firstname = ?, lastname = ?, email = ?, city = ?, language = ? WHERE id = ?",
-    [firstname, lastname, email, city, language, id]
+    "UPDATE users SET firstname = ?, lastname = ?, email = ?, city = ?, language = ?,  hashedPassword = ? WHERE id = ?",
+    [firstname, lastname, email, city, language,  hashedPassword, id]
   )
   .then(([result])=> {
     if (result.affectedRows === 1 ) {

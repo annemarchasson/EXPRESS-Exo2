@@ -1,4 +1,4 @@
-EXPRESS-Exo2 est un projet qui propose un exercice pour apprendre et pratiquer les concepts fondamentaux d'Express.js,
+EXPRESS-Exo est un projet qui propose un exercice pour apprendre et pratiquer les concepts fondamentaux d'Express.js,
 un framework JavaScript pour la création d'applications web côté serveur. Cet exercice vous permettra de vous familiariser avec les routes,
 les middlewares et les fonctionnalités d'Express.
 
